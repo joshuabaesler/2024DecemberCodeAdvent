@@ -8,8 +8,6 @@ for line in file:
     fullFile.append(arr)
 file.close
 
-
-#XMAS or SMAX Check
 sum = 0
 #set bounds
 rowLen = len(fullFile)
@@ -42,4 +40,29 @@ for i in range(rowLen):
         if(i < rowLen-3 and j > 2 and fullFile[i][j] == "S" and fullFile[i+1][j-1] == "A" and fullFile[i+2][j-2] == "M" and fullFile[i+3][j-3] == "X"):
             sum +=1
 print("XMAS Appearances")
+print(sum)
+
+#Part 2
+sum = 0
+#grid iteration
+for i in range(rowLen):
+    for j in range(colLen):
+        xCheck = 0
+        #Diagonal right MAS check
+        if(i > 0 and j > 0 and i < rowLen-1 and j < colLen-1 and fullFile[i][j] == "A" and fullFile[i-1][j-1] == "M" and fullFile[i+1][j+1] == "S"):
+            xCheck +=1
+        #Diagonal right SAM check
+        if(i > 0 and j > 0 and i < rowLen-1 and j < colLen-1 and fullFile[i][j] == "A" and fullFile[i-1][j-1] == "S" and fullFile[i+1][j+1] == "M"):
+            xCheck +=1
+        #Diagonal left MAS check
+        if(i > 0 and j > 0 and i < rowLen-1 and j < colLen-1 and fullFile[i][j] == "A" and fullFile[i-1][j+1] == "M" and fullFile[i+1][j-1] == "S"):
+            xCheck +=1
+        #Diagonal left SAM check
+        if(i > 0 and j > 0 and i < rowLen-1 and j < colLen-1 and fullFile[i][j] == "A" and fullFile[i-1][j+1] == "S" and fullFile[i+1][j-1] == "M"):
+            xCheck +=1
+        #Check if a full X is made
+        if(xCheck == 2):
+            sum+=1
+
+print("X-MAS Appearances")
 print(sum)
